@@ -19,7 +19,6 @@ const removeContact = async (contactId) => {
   const indexToRemove = contacts.findIndex(
     (contact) => contact.id === contactId
   );
-  console.log(contactId);
   if (indexToRemove === -1) {
     return null;
   }
@@ -44,13 +43,10 @@ const updateContact = async (contactId, body) => {
   const indexForUpdate = contacts.findIndex(
     (contact) => contact.id === contactId
   );
-  console.log(contactId);
   if (indexForUpdate === -1) {
     return null;
   }
-  console.log(contactId);
   contacts[indexForUpdate] = { contactId, ...body };
-  console.log(contacts[indexForUpdate]);
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return contacts[indexForUpdate];
 };
