@@ -3,9 +3,8 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 
 const getAll = async (req, res) => {
   const { id: owner } = req.user;
-  const { page = 1, limit = 2 } = req.query;
+  const { page = 1, limit = 2, favorite } = req.query;
   const skip = (page - 1) * limit;
-  const { favorite } = req.query;
   if (favorite === undefined) {
     const result = await Contact.find({ owner }, "-createdAt -updatedAt", {
       skip,
